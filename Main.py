@@ -4,12 +4,6 @@ from scipy.signal import savgol_filter
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 
-###################################################
-### 1. Change Window Name to include FFT Factor ###
-### 2. Add a "Stats" button for smoothed plot   ###
-###################################################
-
-
 class Operations:
 
     def __init__(self) -> None:
@@ -50,7 +44,7 @@ class Operations:
             x_to_start = (x_to_start + 1)
         file.close()
 
-    def PlotReadings(self):
+    def PlotReadings(self, incomingFftFactor):
         x = np.linspace(int(self.x_start),int(self.x_end),int(self.y_data_size)) #(x_start, x_end, the total number of y points that will be plotted)
         y = self.thc_data
         smoothedYnew = self.smoothedY
@@ -69,5 +63,9 @@ class Operations:
         plt.title("Original vs. Smoothed Thickness")
         plt.legend(loc="upper left")
         plt.tight_layout()
+        
+        windowTitle = "FFT Factor: " + str(incomingFftFactor)
+        fig = plt.gcf()
+        fig.canvas.manager.set_window_title(windowTitle)
 
         plt.show()

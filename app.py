@@ -54,6 +54,6 @@ while True:
             else:
                 smoothedThc = obj.SmoothData(originalThc, requestedFFTfactor)
                 obj.WriteToCSV()
-                obj.PlotReadings()
+                obj.PlotReadings(requestedFFTfactor)
 
 window.close()
